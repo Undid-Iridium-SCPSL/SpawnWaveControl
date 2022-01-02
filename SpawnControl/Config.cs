@@ -50,7 +50,7 @@ namespace SpawnWaveControl
             };
 
         [Description("Debug flag.")]
-        public bool debug_enabled = false;
+        public bool debug_enabled { get; set; } = false;
 
     }
 }
