@@ -49,5 +49,8 @@ namespace SpawnWaveControl
                 { "Gaurd_Config", false }
             };
 
+        [Description("Debug flag.")]
+        public bool debug_enabled = false;
+
     }
 }

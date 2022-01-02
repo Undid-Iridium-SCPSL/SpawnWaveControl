@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
+
 namespace SpawnWaveControl
 {
     public class SpawnWaveControl : Plugin<Config>

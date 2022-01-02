@@ -13,6 +13,8 @@ namespace SpawnWaveControl.Utilities
         string default_path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SpawnControl.log";
         private const int DefaultBufferSize = 4096;
         private const FileOptions DefaultOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
+        static Config config;
+
         public LoggerTool()
         {
             if (File.Exists(default_path))
@@ -54,7 +56,15 @@ namespace SpawnWaveControl.Utilities
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void log_msg_static(string msg)
         {
-            StaticAddText(msg);
+            if (config == null)
+            {
+                config = SpawnWaveControl.early_config;
+            }
+
+            if (config.debug_enabled)
+            {
+                StaticAddText(msg);
+            }
         }
 
         public void log_msg(string msg)

@@ -7,8 +7,8 @@
     <ProjectGuid>{3AE454BD-3059-4197-B8A0-6EAB48921F05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SpawnControl</RootNamespace>
-    <AssemblyName>SpawnControl</AssemblyName>
+    <RootNamespace>SpawnWaveControl</RootNamespace>
+    <AssemblyName>SpawnWaveControl</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -118,8 +118,10 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Patches\ChaosSpawnPatcher.cs" />
+    <Compile Include="Patches\MtfSpawnPatcher.cs" />
     <Compile Include="SpawnWaveControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\generalizedSpawner.cs" />
     <Compile Include="Utilities\LoggerTool.cs" />
     <Compile Include="Utilities\ObjectDumper.cs" />
     <Compile Include="Utilities\ReflectionHelpers.cs" />
