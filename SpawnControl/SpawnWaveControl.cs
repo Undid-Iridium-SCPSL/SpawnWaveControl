@@ -1,7 +1,6 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
-
 namespace SpawnWaveControl
 {
     public class SpawnWaveControl : Plugin<Config>
@@ -51,7 +50,6 @@ namespace SpawnWaveControl
                 return;
             }
             early_config = Config;
-
 
 
             //currentSpectator = new Handlers.SpectatorMonitor();
