@@ -51,29 +51,6 @@ namespace SpawnWaveControl
                 return;
             }
             early_config = Config;
-
-
-            //currentSpectator = new Handlers.SpectatorMonitor();
-
-            //if (Config.ForceConstantUpdates)
-            //{
-            //    eventHandler = new Handlers.ForcedEventHandlers();
-            //    PlayerEvents.ChangingRole += eventHandler.OnRoleChange;
-            //}
-            //else
-            //{
-
-            //    PlayerEvents.Died += currentSpectator.OnDeath;
-            //    PlayerEvents.Spawning += currentSpectator.OnRespawn;
-            //    PlayerEvents.ChangingRole += currentSpectator.OnChanginRole;
-
-            //    ServerEvents.EndingRound += currentSpectator.OnRoundEnd;
-            //    ServerEvents.RestartingRound += currentSpectator.OnRoundRestart;
-            //    ServerEvents.WaitingForPlayers += currentSpectator.OnRoundRestart;
-            //    ServerEvents.RespawningTeam += currentSpectator.OnTeamSpawn;
-            //}
-
-
             Log.Info("SpawnControl has been loaded");
 
         }
@@ -82,27 +59,6 @@ namespace SpawnWaveControl
         /// </summary>
         public void UnRegisterEvents()
         {
-            // Make it dynamically updatable.
-            // We do this by removing the listener for the event and then nulling the event handler.
-            // This process must be repeated for each event.
-            //if (Config.ForceConstantUpdates)
-            //{
-            //    eventHandler = null;
-            //    PlayerEvents.ChangingRole -= eventHandler.OnRoleChange;
-            //}
-            //else
-            //{
-            //    PlayerEvents.Died -= currentSpectator.OnDeath;
-            //    PlayerEvents.Spawning -= currentSpectator.OnRespawn;
-            //    PlayerEvents.ChangingRole -= currentSpectator.OnChanginRole;
-
-            //    ServerEvents.EndingRound -= currentSpectator.OnRoundEnd;
-            //    ServerEvents.RestartingRound -= currentSpectator.OnRoundRestart;
-            //    ServerEvents.WaitingForPlayers -= currentSpectator.OnRoundRestart;
-            //    ServerEvents.RespawningTeam -= currentSpectator.OnTeamSpawn;
-            //}
-            //currentSpectator = null;
-
             Log.Info("SpawnControl has been unloaded");
         }
     }
