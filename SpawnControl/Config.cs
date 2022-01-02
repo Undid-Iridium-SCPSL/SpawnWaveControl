@@ -30,23 +30,12 @@ namespace SpawnWaveControl
 
             };
 
-        [Description("Rules of spawn percentage per Guard type (Not implemented yet?)")]
-        public Dictionary<string, float> GuardSpawnWaveRules { get; set; } =
-            new Dictionary<string, float>
-            {
-                { "ChaosMarauder" ,  0.2f },
-                { "ChaosRepressor" ,  0.3f },
-                { "ChaosRifleman" ,  1.0f}
-
-            };
-
         [Description("Gives logic choice behavior based on what you set.")]
         public Dictionary<string, bool> ProgramLevel { get; set; } =
             new Dictionary<string, bool>
             {
                 { "Chaos_Config", true },
-                { "Mtf_Config", false },
-                { "Gaurd_Config", false }
+                { "Mtf_Config", false }
             };
 
         [Description("Debug flag.")]

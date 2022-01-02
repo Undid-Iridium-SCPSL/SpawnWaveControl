@@ -41,8 +41,10 @@ namespace SpawnWaveControl.Utilities
                 }
             }
 
+            RoleType last_known_role = RoleType.None;
             foreach (KeyValuePair<RoleType, int> paired_spawn in role_probability_pair)
             {
+                last_known_role = paired_spawn.Key;
                 if (AddNewPlayerToQueue(paired_spawn.Value, ref total_spawned, paired_spawn.Key, playersToSpawn, queueToFill))
                 {
                     LoggerTool.log_msg_static($"Alright, what was the probabilities  { paired_spawn.Key} and its prob {paired_spawn.Value}");
@@ -52,6 +54,23 @@ namespace SpawnWaveControl.Utilities
                     LoggerTool.log_msg_static($"Alright, what was the probabilities of non-added  { paired_spawn.Key} and its prob {paired_spawn.Value}");
                 }
 
+            }
+
+
+            //Incase the user somehow provided bad values, we should still either provide something to spawn if != players to spawn
+            //Such as .2, .2, .2 which is .6, we need the other .4, so we will default to the last type defined. If
+            //no known type is known, something went really bad and we will return and run default logic. 
+            if (last_known_role != RoleType.None)
+            {
+                while (total_spawned < playersToSpawn)
+                {
+                    queueToFill.Enqueue(last_known_role);
+                    total_spawned += 1;
+                }
+            }
+            else
+            {
+                return false;
             }
 
             return true;
