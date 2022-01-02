@@ -13,7 +13,16 @@ namespace SpawnWaveControl.Patches
         [HarmonyPrefix]
         public static bool MtfSpawnPatch(ref Queue<global::RoleType> queueToFill, int playersToSpawn)
         {
-            if (!generalizedSpawner.GeneralizedSpawner(ref queueToFill, playersToSpawn, "Mtf_Config", SpawnWaveControl.early_config.MtfSpawnWaveRules))
+            SpawnWaveControl.early_config.ProgramLevel.TryGetValue("Mtf_Config", out bool is_enabled);
+
+            if (!is_enabled)
+            {
+                //Runs the normal code execution
+                LoggerTool.log_msg_static("We were not enabled. Letting original method run");
+                return true;
+            }
+
+            if (!generalizedSpawner.GeneralizedSpawner(ref queueToFill, playersToSpawn, SpawnWaveControl.early_config.MtfSpawnWaveRules))
             {
                 LoggerTool.log_msg_static("Letting MtfSpawnPatch original method run");
                 return true;

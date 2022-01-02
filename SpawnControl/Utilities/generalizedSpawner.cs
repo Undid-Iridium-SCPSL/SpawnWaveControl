@@ -15,26 +15,20 @@ namespace SpawnWaveControl.Utilities
         /// <param name="spawnType"></param>
         /// <param name="config_keys"></param>
         /// <returns></returns>
-        public static bool GeneralizedSpawner(ref Queue<global::RoleType> queueToFill, int playersToSpawn, String spawnType, Dictionary<string, float> config_keys)
+        public static bool GeneralizedSpawner(ref Queue<global::RoleType> queueToFill, int playersToSpawn, Dictionary<string, float> config_keys)
         {
-            SpawnWaveControl.early_config.ProgramLevel.TryGetValue(spawnType, out bool is_enabled);
 
-            if (!is_enabled)
+            if (config_keys == null || config_keys.Count == 0)
             {
                 //Runs the normal code execution
                 return false;
             }
 
 
-            if (config_keys == null || config_keys.Count == 0)
-            {
-                return false;
-            }
-
-
+            //To prevent dumb configs. 
             int total_spawned = 0;
 
-            List<RoleType> roles_to_modify = new List<RoleType>();
+
             Dictionary<RoleType, int> role_probability_pair = new Dictionary<RoleType, int>();
 
             foreach (KeyValuePair<string, float> paired_entry in config_keys)
@@ -68,7 +62,7 @@ namespace SpawnWaveControl.Utilities
         private static bool AddNewPlayerToQueue(int amount_to_spawn, ref int total_spawned, RoleType role_to_spawn, int playersToSpawn, Queue<global::RoleType> queueToFill)
         {
 
-            for (int chaos_to_spawn_counter = 0; chaos_to_spawn_counter < amount_to_spawn; chaos_to_spawn_counter++)
+            for (int player_to_spawn_counter = 0; player_to_spawn_counter < amount_to_spawn; player_to_spawn_counter++)
             {
                 if (total_spawned >= playersToSpawn)
                 {

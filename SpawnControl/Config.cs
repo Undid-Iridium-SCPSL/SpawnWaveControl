@@ -10,7 +10,7 @@ namespace SpawnWaveControl
         [Description("Whether to enable or disable plugin")]
         public bool IsEnabled { get; set; } = true;
 
-        [Description("Rules of spawn percentage per Chaos type")]
+        [Description("Rules of spawn percentage per Chaos type. Should add up to 1")]
         public Dictionary<string, float> ChaosSpawnWaveRules { get; set; } =
             new Dictionary<string, float>
             {
@@ -20,17 +20,17 @@ namespace SpawnWaveControl
 
             };
 
-        [Description("Rules of spawn percentage per MTF type")]
+        [Description("Rules of spawn percentage per MTF type. Should add up to 1")]
         public Dictionary<string, float> MtfSpawnWaveRules { get; set; } =
             new Dictionary<string, float>
             {
-                { "NtfCaptain" ,  -1f }, //1, -1 will be default
-                { "NtfSergeant" ,  -1f }, //3
-                { "NtfPrivate" ,  -1f } //Rest - 4
+                { "NtfCaptain" ,  .1f }, //1, <=0 will be ignored, and won't be a spawned type.
+                { "NtfSergeant" ,  .2f }, //3
+                { "NtfPrivate" ,  .7f } //Rest - 4
 
             };
 
-        [Description("Rules of spawn percentage per Guard type")]
+        [Description("Rules of spawn percentage per Guard type (Not implemented yet?)")]
         public Dictionary<string, float> GuardSpawnWaveRules { get; set; } =
             new Dictionary<string, float>
             {
