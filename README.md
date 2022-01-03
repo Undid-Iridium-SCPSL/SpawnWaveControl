@@ -1,5 +1,10 @@
 # SpawnWaveControl
 
+![SPAWNWAVECONTROL LATEST](https://img.shields.io/github/v/release/Undid-Iridium/SpawnWaveControl?include_prereleases&style=flat-square)
+![SPAWNWAVECONTROL LINES](https://img.shields.io/tokei/lines/github/Undid-Iridium/SpawnWaveControl)
+![SPAWNWAVECONTROL DOWNLOADS](https://img.shields.io/github/downloads/Undid-Iridium/SpawnWaveControl/total?style=flat-square)
+
+
 Modify SpawnWave controls for MTF, and CI (NTF, CHAOS)+
 
 Solution Hijacks the GenerateSpawn configuration code that generates what waves will spawn. 
