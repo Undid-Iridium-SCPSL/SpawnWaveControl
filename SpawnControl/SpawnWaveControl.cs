@@ -25,6 +25,7 @@ namespace SpawnWaveControl
             RegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.SpawnControl");
             harmony.PatchAll();
+            base.OnEnabled();
 
         }
         /// <summary>
@@ -35,6 +36,7 @@ namespace SpawnWaveControl
             UnRegisterEvents();
             var harmony = new Harmony("com.Undid-Iridium.SpawnControl");
             harmony.UnpatchAll("com.Undid-Iridium.SpawnControl");
+            base.OnDisabled();
         }
 
 
