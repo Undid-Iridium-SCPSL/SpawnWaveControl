@@ -15,6 +15,8 @@ namespace SpawnWaveControl
 
 
 
+        private Harmony harmony;
+        private string harmony_id = "com.Undid-Iridium.SpawnControl";
 
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace SpawnWaveControl
         public override void OnEnabled()
         {
             RegisterEvents();
-            var harmony = new Harmony("com.Undid-Iridium.SpawnControl");
+            harmony = new Harmony(harmony_id);
             harmony.PatchAll();
             base.OnEnabled();
 
@@ -34,8 +36,8 @@ namespace SpawnWaveControl
         public override void OnDisabled()
         {
             UnRegisterEvents();
-            var harmony = new Harmony("com.Undid-Iridium.SpawnControl");
-            harmony.UnpatchAll("com.Undid-Iridium.SpawnControl");
+            harmony.UnpatchAll(harmony.Id);
+            harmony = null;
             base.OnDisabled();
         }
 
