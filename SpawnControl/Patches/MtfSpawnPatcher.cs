@@ -7,6 +7,12 @@ using System.Collections.Generic;
 namespace SpawnWaveControl.Patches
 {
 
+    /*
+     * [HarmonyPatch(typeof(PatchTargetClass), 
+         nameof(PatchTargetClass.TargetMethodName), 
+         new[] {typeof(float), typeof(int)} ]
+    */
+
     [HarmonyPatch(typeof(NineTailedFoxSpawnHandler))]
     [HarmonyPatch(nameof(NineTailedFoxSpawnHandler.GenerateQueue), MethodType.Normal)]
     public class MtfSpawnPatcher

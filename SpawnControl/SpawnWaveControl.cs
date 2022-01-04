@@ -2,7 +2,6 @@
 using Exiled.API.Features;
 using HarmonyLib;
 using System;
-
 namespace SpawnWaveControl
 {
     public class SpawnWaveControl : Plugin<Config>
@@ -58,6 +57,7 @@ namespace SpawnWaveControl
                 return;
             }
             early_config = Config;
+
             Log.Info("SpawnControl has been loaded");
 
         }
