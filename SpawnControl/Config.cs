@@ -62,8 +62,8 @@ namespace SpawnWaveControl
                 { RoleType.Scp93953, "SCP_939"},
                 { RoleType.Scp93989, "SCP_939"},
 
-                {RoleType.ClassD, "TUT Spawn"},
-                {RoleType.Scientist, "TUT Spawn" }
+                {RoleType.ClassD, "SP_CDP"},
+                {RoleType.Scientist, "SP_RSC" }
 
             };
 

@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Exiled.API.Features;
+using HarmonyLib;
 using SpawnWaveControl.Utilities;
 using System;
 using System.Collections.Generic;
@@ -21,17 +22,17 @@ namespace SpawnWaveControl.Patches
         [HarmonyPrefix]
         public static bool SpawnPointPatcher()
         {
-            SpawnWaveControl.early_config.ProgramLevel.TryGetValue("spawn_location_control", out bool is_enabled);
-
+            bool is_enabled = SpawnWaveControl.early_config.spawn_location_control;
+            Log.Info($"Are we even calling this? What is is_enabled {is_enabled}");
             if (!is_enabled)
             {
                 //Runs the normal code execution
-                LoggerTool.log_msg_static("We were not enabled. Letting original method run");
+                LoggerTool.log_msg_static("We were not enabled for SpawnPointPatcher. Letting original method run");
                 return true;
             }
-
+            Log.Info("Hello");
             Dictionary<RoleType, string> group_spawn_locations = SpawnWaveControl.early_config.RoleSpawnLocations;
-
+            LoggerTool.log_msg_static("We were enabled and are now going to start touching things");
             global::SpawnpointManager.Positions.Clear();
             foreach (RoleType available_roles in Enum.GetValues(typeof(global::RoleType)))
             {
@@ -51,14 +52,18 @@ namespace SpawnWaveControl.Patches
                 return null;
             }
 
+            LoggerTool.log_msg_static($"We are going to check if {unique_group_spawn_location == null} is null");
             if (unique_group_spawn_location == null)
             {
+                LoggerTool.log_msg_static($"What the hell is our classID {classID}");
                 if (!group_spawn_location.TryGetValue(classID, out string unique_group_data))
                 {
+                    LoggerTool.log_msg_static($"What the hell is our unique data if false {string.Join(Environment.NewLine, group_spawn_location)}");
                     return GameObject.FindGameObjectsWithTag("SP_RSC");
                 }
                 else
                 {
+                    LoggerTool.log_msg_static($"What the hell is our classID unique group {unique_group_data}");
                     return GameObject.FindGameObjectsWithTag(unique_group_data);
                 }
 
