@@ -21,7 +21,7 @@ namespace SpawnWaveControl.Patches
         [HarmonyPrefix]
         public static bool SpawnPointPatcher()
         {
-            SpawnWaveControl.early_config.ProgramLevel.TryGetValue("Mtf_Config", out bool is_enabled);
+            SpawnWaveControl.early_config.ProgramLevel.TryGetValue("spawn_location_control", out bool is_enabled);
 
             if (!is_enabled)
             {
@@ -55,7 +55,7 @@ namespace SpawnWaveControl.Patches
             {
                 if (!group_spawn_location.TryGetValue(classID, out string unique_group_data))
                 {
-                    return null;
+                    return GameObject.FindGameObjectsWithTag("SP_RSC");
                 }
                 else
                 {

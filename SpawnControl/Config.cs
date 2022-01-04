@@ -60,7 +60,10 @@ namespace SpawnWaveControl
                 { RoleType.Scp106, "SP_106"},
                 { RoleType.Scp173, "SP_173"},
                 { RoleType.Scp93953, "SCP_939"},
-                { RoleType.Scp93989, "SCP_939"}
+                { RoleType.Scp93989, "SCP_939"},
+
+                {RoleType.ClassD, "TUT Spawn"},
+                {RoleType.Scientist, "TUT Spawn" }
 
             };
 
