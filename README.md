@@ -51,7 +51,7 @@ What roles can be spawned, and what their %change or %amount will be spawned.
 | probability_flag           | bool       | Whether to enable probability logic instead of percentage spawn.                                                                                                   |
 
 Example of the config (SCP_939 obviously was for testing, putting this here because I have to run)
-
+```
 role_spawn_locations:
     FacilityGuard: SCP_939
     NtfPrivate: SCP_939
@@ -81,3 +81,4 @@ role_spawn_locations:
     TUT: TUT Spawn
   # Flag to enable control of the spawn locations of specific groups
   spawn_location_control: true
+```
