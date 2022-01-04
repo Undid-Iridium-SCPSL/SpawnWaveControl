@@ -40,15 +40,15 @@ namespace SpawnWaveControl.Patches
                     mtf_probability_range = new char[100];
                 }
 
-                int prev_pos = 0; //Start pos to start changing chars from
+                int curr_max = 0; //Start pos to start changing chars from
                 int max = 100; //Max % being 100
                 int start_char = 65; //A
 
                 foreach (KeyValuePair<RoleType, float> paired_data in config_keys)
                 {
-                    int prev_start = prev_pos;
-                    prev_pos += (int)Math.Floor(paired_data.Value * 100);
-                    for (int pos = prev_start; pos < prev_pos && pos <= max; pos++)
+                    int prev_start = curr_max;
+                    curr_max += (int)Math.Floor(paired_data.Value * 100);
+                    for (int pos = prev_start; pos < curr_max && pos <= max; pos++)
                     {
                         mtf_probability_range[pos] = (char)start_char;
                     }
