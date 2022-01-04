@@ -32,12 +32,12 @@ Place the "KeyCardPermissions.dll" file in your Plugins folder.
 What ghosts can interact with is not shown on this list but is configurable and will be generated along with the rest of these settings.
 | Spawn Configuration              | Value Type | Description                                                                                                                                                  |
 |----------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ChaosMarauder              | RoleType   | Determines the percent of Marauder to spawn per team spawn. Chaos Insurgency                                                                                       |
-| ChaosRepressor             | RoleType   | Determines the percent of Repressor to spawn per team spawn. Chaos Insurgency                                                                                      |
-| ChaosRifleman              | RoleType   | Determines the percent of Rifleman to spawn per team spawn. Chaos Insurgency                                                                                       |
-| NtfCaptain                 | RoleType   | Determines the percent of Captain to spawn per team spawn. Chaos Insurgency                                                                                        |
-| NtfSergeant                | RoleType   | Determines the percent of Sergeant to spawn per team spawn. Chaos Insurgency                                                                                       |
-| NtfPrivate                 | RoleType   | Determines the percent of Private to spawn per team spawn. Chaos Insurgency                                                                                        |
+| ChaosMarauder              | RoleType   | Determines the percent/probability of Marauder to spawn per team spawn. Chaos Insurgency                                                                           |
+| ChaosRepressor             | RoleType   | Determines the percent/probability of Repressor to spawn per team spawn. Chaos Insurgency                                                                          |
+| ChaosRifleman              | RoleType   | Determines the percent/probability of Rifleman to spawn per team spawn. Chaos Insurgency                                                                           |
+| NtfCaptain                 | RoleType   | Determines the percent/probability of Captain to spawn per team spawn. Nine-Tailed Fox                                                                             |
+| NtfSergeant                | RoleType   | Determines the percent/probability of Sergeant to spawn per team spawn. Nine-Tailed Fox                                                                            |
+| NtfPrivate                 | RoleType   | Determines the percent/probability of Private to spawn per team spawn. Nine-Tailed Fox                                                                             |
 
 
 | Configuration enable flags | Value Type | Description                                                                                                                                                        |
