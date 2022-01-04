@@ -55,11 +55,11 @@ namespace SpawnWaveControl.Patches
             LoggerTool.log_msg_static($"We are going to check if {unique_group_spawn_location == null} is null");
             if (unique_group_spawn_location == null)
             {
-                LoggerTool.log_msg_static($"What the hell is our classID {classID}");
+                LoggerTool.log_msg_static($"What is our classID {classID}");
                 if (!group_spawn_location.TryGetValue(classID, out string unique_group_data))
                 {
-                    LoggerTool.log_msg_static($"What the hell is our unique data if false {string.Join(Environment.NewLine, group_spawn_location)}");
-                    return GameObject.FindGameObjectsWithTag("SP_RSC");
+
+                    return default_nw_logic(classID);
                 }
                 else
                 {
@@ -76,40 +76,37 @@ namespace SpawnWaveControl.Patches
                     case global::Team.SCP:
                         if (!unique_group_spawn_location.TryGetValue(Team.SCP, out string unique_team_data))
                         {
-                            return default_scp_logic(classID);
+                            return default_nw_logic(classID);
                         }
                         return generate_new_scp_logic(classID, unique_team_data);
                     case global::Team.MTF:
                         if (!unique_group_spawn_location.TryGetValue(Team.MTF, out string mtf_unique_team_data))
                         {
-                            return GameObject.FindGameObjectsWithTag((classID == global::RoleType.FacilityGuard) ? "SP_GUARD" : "SP_MTF");
+                            return default_nw_logic(classID);
                         }
                         return GameObject.FindGameObjectsWithTag(mtf_unique_team_data);
                     case global::Team.CHI:
                         if (!unique_group_spawn_location.TryGetValue(Team.CHI, out string chi_unique_team_data))
                         {
-                            return GameObject.FindGameObjectsWithTag("SP_CI");
+                            return default_nw_logic(classID);
                         }
                         return GameObject.FindGameObjectsWithTag(chi_unique_team_data);
                     case global::Team.RSC:
                         if (!unique_group_spawn_location.TryGetValue(Team.SCP, out string rsc_unique_team_data))
                         {
-                            return GameObject.FindGameObjectsWithTag("SP_RSC");
+                            return default_nw_logic(classID);
                         }
                         return GameObject.FindGameObjectsWithTag(rsc_unique_team_data);
                     case global::Team.CDP:
                         if (!unique_group_spawn_location.TryGetValue(Team.SCP, out string cdp_unique_team_data))
                         {
-                            return GameObject.FindGameObjectsWithTag("SP_CDP");
+                            return default_nw_logic(classID);
                         }
                         return GameObject.FindGameObjectsWithTag(cdp_unique_team_data);
                     case global::Team.TUT:
                         if (!unique_group_spawn_location.TryGetValue(Team.SCP, out string tut_unique_team_data))
                         {
-                            return new GameObject[]
-                            {
-                                GameObject.Find("TUT Spawn")
-                            };
+                            return default_nw_logic(classID);
                         }
                         return new GameObject[]
                         {
@@ -146,30 +143,53 @@ namespace SpawnWaveControl.Patches
             return GameObject.FindGameObjectsWithTag(unique_team_data);
         }
 
-        private static GameObject[] default_scp_logic(RoleType classID)
+        private static GameObject[] default_nw_logic(RoleType classID)
         {
-            switch (classID)
+            global::Role role = GameObject.Find("Host").GetComponent<global::CharacterClassManager>().Classes.SafeGet(classID);
+            if (classID == global::RoleType.Scp0492)
             {
-                case global::RoleType.Scp106:
-                    return GameObject.FindGameObjectsWithTag("SP_106");
-                case global::RoleType.NtfSpecialist:
-                case global::RoleType.Scientist:
-                case global::RoleType.ChaosConscript:
-                    break;
-                case global::RoleType.Scp049:
-                    return GameObject.FindGameObjectsWithTag("SP_049");
-                case global::RoleType.Scp079:
-                    return GameObject.FindGameObjectsWithTag("SP_079");
-                case global::RoleType.Scp096:
-                    return GameObject.FindGameObjectsWithTag("SCP_096");
-                default:
-                    if (classID - global::RoleType.Scp93953 <= 1)
-                    {
-                        return GameObject.FindGameObjectsWithTag("SCP_939");
-                    }
-                    break;
+                return null;
             }
-            return GameObject.FindGameObjectsWithTag("SP_173");
+            switch (role.team)
+            {
+                case global::Team.SCP:
+                    switch (classID)
+                    {
+                        case global::RoleType.Scp106:
+                            return GameObject.FindGameObjectsWithTag("SP_106");
+                        case global::RoleType.NtfSpecialist:
+                        case global::RoleType.Scientist:
+                        case global::RoleType.ChaosConscript:
+                            break;
+                        case global::RoleType.Scp049:
+                            return GameObject.FindGameObjectsWithTag("SP_049");
+                        case global::RoleType.Scp079:
+                            return GameObject.FindGameObjectsWithTag("SP_079");
+                        case global::RoleType.Scp096:
+                            return GameObject.FindGameObjectsWithTag("SCP_096");
+                        default:
+                            if (classID - global::RoleType.Scp93953 <= 1)
+                            {
+                                return GameObject.FindGameObjectsWithTag("SCP_939");
+                            }
+                            break;
+                    }
+                    return GameObject.FindGameObjectsWithTag("SP_173");
+                case global::Team.MTF:
+                    return GameObject.FindGameObjectsWithTag((classID == global::RoleType.FacilityGuard) ? "SP_GUARD" : "SP_MTF");
+                case global::Team.CHI:
+                    return GameObject.FindGameObjectsWithTag("SP_CI");
+                case global::Team.RSC:
+                    return GameObject.FindGameObjectsWithTag("SP_RSC");
+                case global::Team.CDP:
+                    return GameObject.FindGameObjectsWithTag("SP_CDP");
+                case global::Team.TUT:
+                    return new GameObject[]
+                    {
+                GameObject.Find("TUT Spawn")
+                    };
+            }
+            return null;
         }
     }
 }
