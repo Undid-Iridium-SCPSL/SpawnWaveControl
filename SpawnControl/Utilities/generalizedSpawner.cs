@@ -6,6 +6,7 @@ namespace SpawnWaveControl.Utilities
     public class generalizedSpawner
     {
 
+        public static Random RandomGen = new Random();
         /// <summary>
         /// While thinking about whether I want to generalize the above approach, I am reminded of the story of ropes and users. 
         /// This is more of a proof of concept or a potential solution for later. 
@@ -15,7 +16,8 @@ namespace SpawnWaveControl.Utilities
         /// <param name="spawnType"></param>
         /// <param name="config_keys"></param>
         /// <returns></returns>
-        public static bool GeneralizedSpawner(ref Queue<global::RoleType> queueToFill, int playersToSpawn, Dictionary<string, float> config_keys)
+        public static bool GeneralizedSpawner(ref Queue<global::RoleType> queueToFill, int playersToSpawn, Dictionary<RoleType, float> config_keys, bool probability = false,
+            char[] probability_arr = null, Dictionary<char, RoleType> associated_pair_key = null)
         {
 
             if (config_keys == null || config_keys.Count == 0)
@@ -28,50 +30,61 @@ namespace SpawnWaveControl.Utilities
             //To prevent dumb configs. 
             int total_spawned = 0;
 
-
-            Dictionary<RoleType, int> role_probability_pair = new Dictionary<RoleType, int>();
-
-            foreach (KeyValuePair<string, float> paired_entry in config_keys)
-            {
-                RoleType associated_role = (RoleType)Enum.Parse(typeof(RoleType), paired_entry.Key);
-                if (paired_entry.Value > 0)
-                {
-                    int players_to_queue = (int)Math.Floor((float)playersToSpawn * paired_entry.Value);
-                    role_probability_pair.Add(associated_role, players_to_queue < 1 ? 1 : players_to_queue);
-                }
-            }
-
             RoleType last_known_role = RoleType.None;
-            foreach (KeyValuePair<RoleType, int> paired_spawn in role_probability_pair)
+            if (probability)
             {
-                last_known_role = paired_spawn.Key;
-                if (AddNewPlayerToQueue(paired_spawn.Value, ref total_spawned, paired_spawn.Key, playersToSpawn, queueToFill))
+                //This handles probability chance of an group being spawned instead of a percent that will be spawned. 
+                LoggerTool.log_msg_static("Running probabilty logic!!");
+                for (int pos = 0; pos < playersToSpawn; pos++)
                 {
-                    LoggerTool.log_msg_static($"Alright, what was the probabilities  { paired_spawn.Key} and its prob {paired_spawn.Value}");
-                }
-                else
-                {
-                    LoggerTool.log_msg_static($"Alright, what was the probabilities of non-added  { paired_spawn.Key} and its prob {paired_spawn.Value}");
-                }
+                    int current_random = RandomGen.Next(0, 100);
 
-            }
-
-
-            //Incase the user somehow provided bad values, we should still either provide something to spawn if != players to spawn
-            //Such as .2, .2, .2 which is .6, we need the other .4, so we will default to the last type defined. If
-            //no known type is known, something went really bad and we will return and run default logic. 
-            if (last_known_role != RoleType.None)
-            {
-                while (total_spawned < playersToSpawn)
-                {
-                    queueToFill.Enqueue(last_known_role);
-                    total_spawned += 1;
+                    RoleType role_to_spawn = associated_pair_key[probability_arr[current_random]];
+                    //Keeping in case I need strong debug. 
+                    //LoggerTool.log_msg_static($"Current associated_pair_key {string.Join(Environment.NewLine, associated_pair_key)} and probability_arr { new string(probability_arr)} ");
+                    LoggerTool.log_msg_static($"Current random {current_random} meaning {role_to_spawn} will spawn");
+                    queueToFill.Enqueue(role_to_spawn);
                 }
             }
             else
             {
-                return false;
+                //This handles the default behavior of a % of the group being spawned as X type
+                foreach (KeyValuePair<RoleType, float> paired_spawn in config_keys)
+                {
+                    int players_to_queue = (int)Math.Floor((float)playersToSpawn * paired_spawn.Value);
+                    players_to_queue = players_to_queue < 1 ? 1 : players_to_queue;
+
+
+                    last_known_role = paired_spawn.Key;
+                    if (AddNewPlayerToQueue(players_to_queue, ref total_spawned, paired_spawn.Key, playersToSpawn, queueToFill))
+                    {
+                        LoggerTool.log_msg_static($"Alright, what was the type  { paired_spawn.Key} and its percentage {players_to_queue}");
+                    }
+                    else
+                    {
+                        LoggerTool.log_msg_static($"Alright, what was the type of non-added  { paired_spawn.Key} and its percentage {players_to_queue}");
+                    }
+
+                }
+                //Incase the user somehow provided bad values, we should still either provide something to spawn if != players to spawn
+                //Such as .2, .2, .2 which is .6, we need the other .4, so we will default to the last type defined. If
+                //no known type is known, something went really bad and we will return and run default logic. 
+                if (last_known_role != RoleType.None)
+                {
+                    while (total_spawned < playersToSpawn)
+                    {
+                        queueToFill.Enqueue(last_known_role);
+                        total_spawned += 1;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
             }
+
+
+
 
             return true;
         }

@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
+using System;
 
 namespace SpawnWaveControl
 {
@@ -11,13 +12,14 @@ namespace SpawnWaveControl
         /// <summary>
         /// Medium priority, lower prioritys mean faster loadin
         /// </summary>
-        public override PluginPriority Priority { get; } = PluginPriority.Medium;
+        public override PluginPriority Priority { get; } = PluginPriority.Higher;
 
 
 
         private Harmony harmony;
         private string harmony_id = "com.Undid-Iridium.SpawnControl";
 
+        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 0);
 
         /// <summary>
         /// Entrance function called through Exile
@@ -25,6 +27,7 @@ namespace SpawnWaveControl
         public override void OnEnabled()
         {
             RegisterEvents();
+
             harmony = new Harmony(harmony_id);
             harmony.PatchAll();
             base.OnEnabled();
