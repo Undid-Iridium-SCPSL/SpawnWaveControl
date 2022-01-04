@@ -13,7 +13,16 @@ There is a bug with EXILED/NW where Chaos spawn may show the wrong hinttext of t
 
 Nevertheless, the config is the following
 
-Current Plugin Version: V1.0.0
+Current Plugin Version: V1.0.2
+
+
+
+# Installation
+
+**[EXILED](https://github.com/galaxy119/EXILED) must be installed for this to work.**
+
+Place the "KeyCardPermissions.dll" file in your Plugins folder.
+
 
 ## REQUIREMENTS
 * Exiled: V4.2.0
