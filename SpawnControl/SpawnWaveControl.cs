@@ -11,7 +11,7 @@ namespace SpawnWaveControl
         /// <summary>
         /// Medium priority, lower prioritys mean faster loadin
         /// </summary>
-        public override PluginPriority Priority { get; } = PluginPriority.Medium;
+        public override PluginPriority Priority { get; } = PluginPriority.Higher;
 
 
 
@@ -25,6 +25,7 @@ namespace SpawnWaveControl
         public override void OnEnabled()
         {
             RegisterEvents();
+
             harmony = new Harmony(harmony_id);
             harmony.PatchAll();
             base.OnEnabled();
