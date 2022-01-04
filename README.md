@@ -16,8 +16,8 @@ Nevertheless, the config is the following
 Current Plugin Version: V1.0.0
 
 ## REQUIREMENTS
-* Exiled: V4.21.0
-* SCP:SL Server: V11.0
+* Exiled: V4.2.0
+* SCP:SL Server: V11.1.0
 
 ## Config
 What ghosts can interact with is not shown on this list but is configurable and will be generated along with the rest of these settings.
