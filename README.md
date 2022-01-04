@@ -29,7 +29,7 @@ Place the "KeyCardPermissions.dll" file in your Plugins folder.
 * SCP:SL Server: V11.1.0
 
 ## Config
-What ghosts can interact with is not shown on this list but is configurable and will be generated along with the rest of these settings.
+What roles can be spawned, and what their %change or %amount will be spawned. 
 | Spawn Configuration              | Value Type | Description                                                                                                                                                  |
 |----------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ChaosMarauder              | RoleType   | Determines the percent/probability of Marauder to spawn per team spawn. Chaos Insurgency                                                                           |
