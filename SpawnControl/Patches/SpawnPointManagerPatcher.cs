@@ -1,5 +1,4 @@
-﻿using Exiled.API.Features;
-using HarmonyLib;
+﻿using HarmonyLib;
 using SpawnWaveControl.Utilities;
 using System;
 using System.Collections.Generic;
@@ -23,14 +22,14 @@ namespace SpawnWaveControl.Patches
         public static bool SpawnPointPatcher()
         {
             bool is_enabled = SpawnWaveControl.early_config.spawn_location_control;
-            Log.Info($"Are we even calling this? What is is_enabled {is_enabled}");
+
             if (!is_enabled)
             {
                 //Runs the normal code execution
                 LoggerTool.log_msg_static("We were not enabled for SpawnPointPatcher. Letting original method run");
                 return true;
             }
-            Log.Info("Hello");
+
             Dictionary<RoleType, string> group_spawn_locations = SpawnWaveControl.early_config.RoleSpawnLocations;
             LoggerTool.log_msg_static("We were enabled and are now going to start touching things");
             global::SpawnpointManager.Positions.Clear();
