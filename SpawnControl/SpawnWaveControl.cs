@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Enums;
 using Exiled.API.Features;
 using HarmonyLib;
+using System;
 
 namespace SpawnWaveControl
 {
@@ -18,6 +19,7 @@ namespace SpawnWaveControl
         private Harmony harmony;
         private string harmony_id = "com.Undid-Iridium.SpawnControl";
 
+        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 0);
 
         /// <summary>
         /// Entrance function called through Exile

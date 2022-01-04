@@ -31,6 +31,7 @@ namespace SpawnWaveControl.Patches
             Dictionary<char, RoleType> associated_pair_key = new Dictionary<char, RoleType>();
 
             LoggerTool.log_msg_static($"What was probability_enabled {probability_enabled}");
+            //To be fair I could make this a shared function but only if there were more than two teams would I care to. 
             if (probability_enabled)
             {
                 LoggerTool.log_msg_static("Loading probabilty logic");
@@ -53,7 +54,7 @@ namespace SpawnWaveControl.Patches
                         chaos_probability_range[pos] = (char)start_char;
                     }
                     associated_pair_key.Add((char)start_char, paired_data.Key);
-                    start_char += 1;
+                    start_char += 1;//A->B->C
                 }
             }
 

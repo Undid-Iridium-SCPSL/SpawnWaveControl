@@ -33,26 +33,27 @@ namespace SpawnWaveControl.Patches
 
             if (probability_enabled)
             {
+                LoggerTool.log_msg_static("Loading probabilty logic");
                 //This is what is going to allow us to reduce a O(N) O(N+K) at best search (potentially even O(N log N), O(N+K) to O(2*N) O(100) -> O(N), 100
                 if (mtf_probability_range == null)
                 {
                     mtf_probability_range = new char[100];
                 }
 
-                int start = 0;
-                int max = 100;
+                int prev_pos = 0; //Start pos to start changing chars from
+                int max = 100; //Max % being 100
                 int start_char = 65; //A
 
                 foreach (KeyValuePair<RoleType, float> paired_data in config_keys)
                 {
-                    int prev_start = start;
-                    start += (int)Math.Floor(paired_data.Value * 100);
-                    for (int pos = prev_start; pos < max; pos++)
+                    int prev_start = prev_pos;
+                    prev_pos += (int)Math.Floor(paired_data.Value * 100);
+                    for (int pos = prev_start; pos < prev_pos && pos <= max; pos++)
                     {
                         mtf_probability_range[pos] = (char)start_char;
                     }
                     associated_pair_key.Add((char)start_char, paired_data.Key);
-                    start_char += 1;
+                    start_char += 1;//A->B->C
                 }
             }
 
