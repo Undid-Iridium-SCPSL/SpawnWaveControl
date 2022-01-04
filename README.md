@@ -50,3 +50,34 @@ What roles can be spawned, and what their %change or %amount will be spawned.
 |----------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | probability_flag           | bool       | Whether to enable probability logic instead of percentage spawn.                                                                                                   |
 
+Example of the config (SCP_939 obviously was for testing, putting this here because I have to run)
+
+role_spawn_locations:
+    FacilityGuard: SCP_939
+    NtfPrivate: SCP_939
+    NtfSergeant: SCP_939
+    NtfCaptain: SCP_939
+    NtfSpecialist: SCP_939
+    ChaosConscript: SP_CI
+    ChaosMarauder: SP_CI
+    ChaosRepressor: SP_CI
+    ChaosRifleman: SP_CI
+    Scp049: SP_049
+    Scp0492: 
+    Scp079: SP_079
+    Scp096: SCP_096
+    Scp106: SP_106
+    Scp173: SP_173
+    Scp93953: SCP_939
+    Scp93989: SCP_939
+    ClassD: SP_CDP
+    Scientist: SP_RSC
+  # Gives spawn wave location control based on what you set. Would NOT recommend using this for MTF/SCP
+  unique_groups_spawn_locations:
+    MTF: SP_MTF
+    CHI: SP_CI
+    RSC: SP_RSC
+    CDP: SP_CDP
+    TUT: TUT Spawn
+  # Flag to enable control of the spawn locations of specific groups
+  spawn_location_control: true
