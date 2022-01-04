@@ -35,3 +35,9 @@ What ghosts can interact with is not shown on this list but is configurable and 
 |----------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Chaos_Config               | bool       | Whether to enable override behavior for Chaos spawn rates. If not it defaults to base game logic                                                                   |
 | Mtf_Config                 | bool       | Whether to enable override behavior for Mtf spawn rates. If not it defaults to base game logic                                                                     |
+
+
+| Config probability flag    | Value Type | Description                                                                                                                                                        |
+|----------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| probability_flag           | bool       | Whether to enable probability logic instead of percentage spawn.                                                                                                   |
+
