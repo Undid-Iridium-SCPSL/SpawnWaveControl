@@ -5,15 +5,17 @@
 ![SPAWNWAVECONTROL DOWNLOADS](https://img.shields.io/github/downloads/Undid-Iridium/SpawnWaveControl/total?style=flat-square)
 
 
-Modify SpawnWave controls for MTF, and CI (NTF, CHAOS)+
+Ability to control spawn of MTF, CHAOS and location+
 
 Solution Hijacks the GenerateSpawn configuration code that generates what waves will spawn. 
+
+Solution Hijacks SpawnpointManager's code, and how it handles gathering of default locations
 
 There is a bug with EXILED/NW where Chaos spawn may show the wrong hinttext of the type spawned, and f1 information is wrong
 
 Nevertheless, the config is the following
 
-Current Plugin Version: V1.0.2
+Current Plugin Version: V1.0.3
 
 
 
