@@ -23,7 +23,7 @@ Current Plugin Version: V1.0.3
 
 **[EXILED](https://github.com/galaxy119/EXILED) must be installed for this to work.**
 
-Place the "KeyCardPermissions.dll" file in your Plugins folder.
+Place the "SpawnWaveControl.dll" file in your Plugins folder.
 
 
 ## REQUIREMENTS
