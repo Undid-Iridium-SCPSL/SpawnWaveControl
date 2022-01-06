@@ -16,7 +16,7 @@ namespace SpawnWaveControl
             {
                 { RoleType.ChaosMarauder ,  0.2f },
                 { RoleType.ChaosRepressor ,  0.3f },
-                { RoleType.ChaosRifleman ,  0.7f}
+                { RoleType.ChaosRifleman ,  0.5f}
 
             };
 
