@@ -35,13 +35,12 @@ namespace SpawnWaveControl.Utilities
             {
                 //This handles probability chance of an group being spawned instead of a percent that will be spawned. 
                 LoggerTool.log_msg_static("Running probabilty logic!!");
+                int current_random = 0;
                 for (int pos = 0; pos < playersToSpawn; pos++)
                 {
-                    int current_random = RandomGen.Next(0, 100);
+                    current_random = RandomGen.Next(0, 100);
 
                     RoleType role_to_spawn = associated_pair_key[probability_arr[current_random]];
-                    //Keeping in case I need strong debug. 
-                    //LoggerTool.log_msg_static($"Current associated_pair_key {string.Join(Environment.NewLine, associated_pair_key)} and probability_arr { new string(probability_arr)} ");
                     LoggerTool.log_msg_static($"Current random {current_random} meaning {role_to_spawn} will spawn");
                     queueToFill.Enqueue(role_to_spawn);
                 }
@@ -49,9 +48,10 @@ namespace SpawnWaveControl.Utilities
             else
             {
                 //This handles the default behavior of a % of the group being spawned as X type
+                int players_to_queue = 0;
                 foreach (KeyValuePair<RoleType, float> paired_spawn in config_keys)
                 {
-                    int players_to_queue = (int)Math.Floor((float)playersToSpawn * paired_spawn.Value);
+                    players_to_queue = (int)Math.Floor((float)playersToSpawn * paired_spawn.Value);
                     players_to_queue = players_to_queue < 1 ? 1 : players_to_queue;
 
 
@@ -82,9 +82,6 @@ namespace SpawnWaveControl.Utilities
                     return false;
                 }
             }
-
-
-
 
             return true;
         }
