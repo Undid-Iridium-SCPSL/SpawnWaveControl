@@ -15,7 +15,7 @@ There is a bug with EXILED/NW where Chaos spawn may show the wrong hinttext of t
 
 Nevertheless, the config is the following
 
-Current Plugin Version: V1.0.3
+Current Plugin Version: V1.0.4
 
 
 
