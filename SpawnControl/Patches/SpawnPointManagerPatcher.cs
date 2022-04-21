@@ -21,7 +21,7 @@ namespace SpawnWaveControl.Patches
         [HarmonyPrefix]
         public static bool SpawnPointPatcher()
         {
-            bool is_enabled = SpawnWaveControl.early_config.spawn_location_control;
+            bool is_enabled = SpawnWaveControl.Instance.Config.spawn_location_control;
 
             if (!is_enabled)
             {
@@ -30,7 +30,7 @@ namespace SpawnWaveControl.Patches
                 return true;
             }
 
-            Dictionary<RoleType, string> group_spawn_locations = SpawnWaveControl.early_config.RoleSpawnLocations;
+            Dictionary<RoleType, string> group_spawn_locations = SpawnWaveControl.Instance.Config.RoleSpawnLocations;
             LoggerTool.log_msg_static("We were enabled and are now going to start touching things");
             global::SpawnpointManager.Positions.Clear();
             foreach (RoleType available_roles in Enum.GetValues(typeof(global::RoleType)))

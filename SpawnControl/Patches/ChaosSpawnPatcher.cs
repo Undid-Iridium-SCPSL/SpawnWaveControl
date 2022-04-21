@@ -17,7 +17,7 @@ namespace SpawnWaveControl.Patches
         [HarmonyPrefix]
         public static bool ChaosSpawnPatch(ref Queue<global::RoleType> queueToFill, int playersToSpawn)
         {
-            SpawnWaveControl.early_config.ProgramLevel.TryGetValue("Chaos_Config", out bool is_enabled);
+            SpawnWaveControl.Instance.Config.ProgramLevel.TryGetValue("Chaos_Config", out bool is_enabled);
 
             if (!is_enabled)
             {
@@ -26,8 +26,8 @@ namespace SpawnWaveControl.Patches
             }
 
 
-            Dictionary<RoleType, float> config_keys = SpawnWaveControl.early_config.ChaosSpawnWaveRules;
-            bool probability_enabled = SpawnWaveControl.early_config.probability_flag;
+            Dictionary<RoleType, float> config_keys = SpawnWaveControl.Instance.Config.ChaosSpawnWaveRules;
+            bool probability_enabled = SpawnWaveControl.Instance.Config.probability_flag;
             Dictionary<char, RoleType> associated_pair_key = new Dictionary<char, RoleType>();
 
             LoggerTool.log_msg_static($"What was probability_enabled {probability_enabled}");
