@@ -24,7 +24,7 @@ namespace SpawnWaveControl.Patches
         [HarmonyPrefix]
         public static bool MtfSpawnPatch(ref Queue<global::RoleType> queueToFill, int playersToSpawn)
         {
-            SpawnWaveControl.early_config.ProgramLevel.TryGetValue("Mtf_Config", out bool is_enabled);
+            SpawnWaveControl.Instance.Config.ProgramLevel.TryGetValue("Mtf_Config", out bool is_enabled);
 
             if (!is_enabled)
             {
@@ -33,8 +33,8 @@ namespace SpawnWaveControl.Patches
                 return true;
             }
 
-            Dictionary<RoleType, float> config_keys = SpawnWaveControl.early_config.MtfSpawnWaveRules;
-            bool probability_enabled = SpawnWaveControl.early_config.probability_flag;
+            Dictionary<RoleType, float> config_keys = SpawnWaveControl.Instance.Config.MtfSpawnWaveRules;
+            bool probability_enabled = SpawnWaveControl.Instance.Config.probability_flag;
             Dictionary<char, RoleType> associated_pair_key = new Dictionary<char, RoleType>();
 
             if (probability_enabled)

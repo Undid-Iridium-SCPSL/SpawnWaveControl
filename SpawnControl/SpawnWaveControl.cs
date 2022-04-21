@@ -9,23 +9,40 @@ namespace SpawnWaveControl
 {
     public class SpawnWaveControl : Plugin<Config>
     {
-        public static Config early_config;
 
-        /// <summary>
-        /// Medium priority, lower prioritys mean faster loadin
-        /// </summary>
-        public override PluginPriority Priority { get; } = PluginPriority.Higher;
 
         private Harmony harmony;
-        private string harmony_id = "com.Undid-Iridium.SpawnControl";
 
-        public override Version RequiredExiledVersion { get; } = new Version(4, 2, 0);
+        /// <summary>
+        /// Gets a static instance of the <see cref="Plugin"/> class.
+        /// </summary>
+        public static SpawnWaveControl Instance { get; private set; }
+
+        /// <inheritdoc />
+        public override string Author => "Undid-Iridium";
+
+        /// <inheritdoc />
+        public override string Name => "SpawnWaveControl";
+
+        /// <inheritdoc />
+        public override Version RequiredExiledVersion { get; } = new Version(5, 1, 3);
+
+        /// <inheritdoc />
+        public override Version Version { get; } = new Version(1, 0, 5);
+
+
+
+
 
         /// <summary>
         /// Entrance function called through Exile
         /// </summary>
         public override void OnEnabled()
         {
+            Instance = this;
+
+
+
             RegisterEvents();
             RegisterHarmony();
             base.OnEnabled();
@@ -45,22 +62,22 @@ namespace SpawnWaveControl
 
         private void RegisterHarmony()
         {
-            harmony = new Harmony(harmony_id);
+            harmony = new Harmony($"com.Undid-Iridium.SpawnControl.{DateTime.UtcNow.Ticks}");
             //https://harmony.pardeike.net/articles/basics.html cute patching method
-            if (Config.spawn_location_control)
+            if (SpawnWaveControl.Instance.Config.spawn_location_control)
             {
                 harmony.PatchAll();
+                return;
             }
-            else
-            {
-                var chaos_original = typeof(ChaosInsurgencySpawnHandler).GetMethod(nameof(NineTailedFoxSpawnHandler.GenerateQueue));
-                var chaos_prefix = typeof(ChaosSpawnPatcher).GetMethod(nameof(ChaosSpawnPatcher.ChaosSpawnPatch));
-                harmony.Patch(chaos_original, prefix: new HarmonyMethod(chaos_prefix));
 
-                var mtf_original = typeof(NineTailedFoxSpawnHandler).GetMethod(nameof(NineTailedFoxSpawnHandler.GenerateQueue));
-                var mtf_prefix = typeof(MtfSpawnPatcher).GetMethod(nameof(MtfSpawnPatcher.MtfSpawnPatch));
-                harmony.Patch(chaos_original, prefix: new HarmonyMethod(chaos_prefix));
-            }
+            var chaos_original = typeof(ChaosInsurgencySpawnHandler).GetMethod(nameof(NineTailedFoxSpawnHandler.GenerateQueue));
+            var chaos_prefix = typeof(ChaosSpawnPatcher).GetMethod(nameof(ChaosSpawnPatcher.ChaosSpawnPatch));
+            harmony.Patch(chaos_original, prefix: new HarmonyMethod(chaos_prefix));
+
+            var mtf_original = typeof(NineTailedFoxSpawnHandler).GetMethod(nameof(NineTailedFoxSpawnHandler.GenerateQueue));
+            var mtf_prefix = typeof(MtfSpawnPatcher).GetMethod(nameof(MtfSpawnPatcher.MtfSpawnPatch));
+            harmony.Patch(chaos_original, prefix: new HarmonyMethod(chaos_prefix));
+
         }
 
 
@@ -76,10 +93,6 @@ namespace SpawnWaveControl
         /// </summary>
         public void RegisterEvents()
         {
-            // Register the event handler class. And add the event,
-            // to the EXILED_Events event listener so we get the event.
-            early_config = Config;
-
             Log.Info("SpawnControl has been loaded");
 
         }

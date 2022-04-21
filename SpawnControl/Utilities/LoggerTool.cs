@@ -35,7 +35,7 @@ namespace SpawnWaveControl.Utilities
         {
             if (config == null)
             {
-                config = SpawnWaveControl.early_config;
+                config = SpawnWaveControl.Instance.Config;
             }
 
             if (config.debug_enabled)
