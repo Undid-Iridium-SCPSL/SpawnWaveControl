@@ -28,7 +28,7 @@ Place the "SpawnWaveControl.dll" file in your Plugins folder.
 
 ## REQUIREMENTS
 * Exiled: V4.2.0
-* SCP:SL Server: V11.1.0
+* SCP:SL Server: V Latest game version 11.2
 
 ## Config
 What roles can be spawned, and what their %change or %amount will be spawned. 
