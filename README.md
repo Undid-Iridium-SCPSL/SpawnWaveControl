@@ -27,7 +27,7 @@ Place the "SpawnWaveControl.dll" file in your Plugins folder.
 
 
 ## REQUIREMENTS
-* Exiled: V4.2.0
+* Exiled: V5.1.3
 * SCP:SL Server: V Latest game version 11.2
 
 ## Config
