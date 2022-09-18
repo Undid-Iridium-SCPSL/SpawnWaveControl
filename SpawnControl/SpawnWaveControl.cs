@@ -76,7 +76,7 @@ namespace SpawnWaveControl
 
             var mtf_original = typeof(NineTailedFoxSpawnHandler).GetMethod(nameof(NineTailedFoxSpawnHandler.GenerateQueue));
             var mtf_prefix = typeof(MtfSpawnPatcher).GetMethod(nameof(MtfSpawnPatcher.MtfSpawnPatch));
-            harmony.Patch(chaos_original, prefix: new HarmonyMethod(chaos_prefix));
+            harmony.Patch(mtf_original, prefix: new HarmonyMethod(mtf_prefix));
 
         }
 
